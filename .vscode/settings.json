@@ -1,0 +1,11 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.ejs": "html",
+        "utility": "c",
+        "list": "c",
+        "vector": "c"
+    },
+    "C_Cpp.errorSquiggles": "enabled"
+}
