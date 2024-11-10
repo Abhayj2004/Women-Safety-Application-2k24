@@ -109,6 +109,7 @@ sendMessage(String messageBody) async {
   }
 }
 
+
 Future<void> initializeService() async {
   final service = FlutterBackgroundService();
   AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -169,6 +170,7 @@ void onStart(ServiceInstance service) async {
         ShakeDetector.autoStart(
             shakeThresholdGravity: 7,
             onPhoneShake: () async {
+              
               if(await Vibration.hasVibrator() ?? false){
                 
                 print("66666666");

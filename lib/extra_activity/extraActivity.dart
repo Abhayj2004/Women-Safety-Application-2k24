@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3_mainproject/SafeHome/SafeHome.dart';
 import 'package:flutter_application_3_mainproject/camera/cameramain.dart';
 import 'package:flutter_application_3_mainproject/extra_activity/record_audio.dart';
 import 'package:flutter_application_3_mainproject/extra_activity/voice_assistant.dart';
@@ -17,7 +18,7 @@ class Extraactivity extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           RecordAudio(),
-          VoiceAssistant(),
+          SafeHome(),
           CapturePhoto(),
         ],
       ),

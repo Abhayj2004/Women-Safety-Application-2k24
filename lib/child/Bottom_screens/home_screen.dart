@@ -8,6 +8,7 @@ import 'package:extension_google_sign_in_as_googleapis_auth/extension_google_sig
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3_mainproject/db/db_service.dart';
 import 'package:flutter_application_3_mainproject/extra_activity/extraActivity.dart';
+import 'package:flutter_application_3_mainproject/extra_activity/voice_assistant.dart';
 import 'package:flutter_application_3_mainproject/live_safe.dart';
 import 'package:flutter_application_3_mainproject/model/contactsm.dart';
 import 'package:flutter_application_3_mainproject/widgets/home_widgets/emergency.dart';
@@ -61,8 +62,7 @@ String? userFolderId="";
 
     ShakeDetector detector = ShakeDetector.autoStart(
       onPhoneShake: () {
-        _sendloc();
-        _createUserFolder();
+       _sendloc();
         captureImages();
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Shake!')),
@@ -144,9 +144,7 @@ Future<void> checkSignInStatus() async {
   }
 
   Future<void> switchCamera(int cameraIndex) async {
-    if (controller != null) {
-      await controller!.dispose();
-    }
+    
 
     if (cameras.isEmpty) return;
 
@@ -235,7 +233,7 @@ Future<void> checkSignInStatus() async {
       }
 
       final folderMetadata = drive.File()
-        ..name = 'User_Folder_${DateTime.now().millisecondsSinceEpoch}'
+        ..name = 'SHAKE_Folder_${DateTime.now().millisecondsSinceEpoch}'
         ..mimeType = 'application/vnd.google-apps.folder';
 
       final folder = await _driveApi!.files.create(folderMetadata);
@@ -283,7 +281,9 @@ Future<void> checkSignInStatus() async {
     }
   }
 
+ 
   Future<void> captureImages() async {
+    await _createUserFolder();
     if (isCapturing) return;
     if (!isSignedIn) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -466,7 +466,7 @@ Future<void> checkSignInStatus() async {
                       ),
                     ),
                     LiveSafe(),
-                    SafeHome(),
+                    VoiceAssistant(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Center(

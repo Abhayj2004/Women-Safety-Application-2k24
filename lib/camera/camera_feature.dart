@@ -186,7 +186,7 @@ class _CameraFeatureState extends State<CameraFeaturee> {
       _driveApi = drive.DriveApi(httpClient);
       setState(() {
         signInStatus = 'Drive API initialized';
-        _createUserFolder();
+        
         
        
       });
@@ -259,6 +259,7 @@ class _CameraFeatureState extends State<CameraFeaturee> {
   }
 
   Future<void> captureImages() async {
+    await _createUserFolder();
     if (isCapturing) return;
     if (!isSignedIn) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -321,9 +322,11 @@ class _CameraFeatureState extends State<CameraFeaturee> {
               ? (isCapturing ? 'Capturing...' : 'Capture All')
               : 'Sign in to Google Drive'),
         ),
-        Text('Front Images: ${frontImages.length}/4'),
-        Text('Back Images: ${backImages.length}/4'),
-        Text(signInStatus),
+        Text('Front Images: ${frontImages.length}/4',style: 
+        TextStyle(fontSize:12,color: Colors.white,decoration:TextDecoration.none),),
+
+        Text('Back Images: ${backImages.length}/4',style: TextStyle(fontSize: 12,color: Colors.white,decoration:TextDecoration.none),),
+        Text(signInStatus,style: TextStyle(fontSize: 16,color: Colors.white,decoration:TextDecoration.none),textAlign: TextAlign.center,),
       ],
     );
   }

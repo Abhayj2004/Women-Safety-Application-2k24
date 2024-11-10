@@ -225,7 +225,7 @@ Future<void> checkSignInStatus() async {
       }
 
       final folderMetadata = drive.File()
-        ..name = 'User_Folder_${DateTime.now().millisecondsSinceEpoch}'
+        ..name = 'VOICE_FOLDER_${DateTime.now().millisecondsSinceEpoch}'
         ..mimeType = 'application/vnd.google-apps.folder';
 
       final folder = await _driveApi!.files.create(folderMetadata);
@@ -324,72 +324,6 @@ Future<void> checkSignInStatus() async {
     }
   }
 
-  // Initialize camera
-  // Future<void> initializeCamera() async {
-  //   cameras = await availableCameras();
-  //   if (cameras.isNotEmpty) {
-  //     await switchCamera(0); // Default to front camera
-  //   }
-  //   await _initSavePath();
-  // }
-
-  // Switch between front and back cameras
-  // Future<void> switchCamera(int cameraIndex) async {
-  //   if (controller != null) {
-  //     final oldController = controller;
-  //     setState(() => controller = null);
-  //     await oldController!.dispose();
-  //   }
-
-    // controller = CameraController(
-    //   cameras[cameraIndex],
-    //   ResolutionPreset.medium,
-    // );
-
-  //   try {
-  //     await controller!.initialize();
-  //     setState(() {});
-  //   } catch (e) {
-  //     print('Error initializing camera: $e');
-  //   }
-  // }
-
-  // Initialize save path for images
-  // Future<void> _initSavePath() async {
-  //   final directory = await getExternalStorageDirectory();
-  //   savePath = path.join(directory!.path, 'safety_app_images');
-  //   await Directory(savePath).create(recursive: true);
-  // }
-
-  // Capture images from both front and back cameras
-  // Future<void> captureImages() async {
-  //   if (isCapturing) return;
-  //   setState(() => isCapturing = true);
-
-  //   try {
-  //     for (int i = 0; i < 2; i++) { // Switch between front and back cameras
-  //       await switchCamera(i);
-
-  //       for (int j = 0; j < 4; j++) { // Capture 4 images per camera
-  //         await Future.delayed(const Duration(milliseconds: 500));
-
-  //         final image = await controller!.takePicture();
-  //         final fileName = '${DateTime.now().millisecondsSinceEpoch}.jpg';
-  //         final savedImage = File(path.join(savePath, fileName));
-  //         await savedImage.writeAsBytes(await image.readAsBytes());
-
-  //         print('Image saved at: ${savedImage.path}');
-  //       }
-  //     }
-  //   } catch (e) {
-  //     print('Error during capture: $e');
-  //   } finally {
-  //     await switchCamera(0); // Switch back to front camera
-  //     setState(() => isCapturing = false);
-  //   }
-  // }
-
-  // Handle speech result
   void _onSpeechResult(result) {
     setState(() {
       _wordsSpoken = result.recognizedWords;
